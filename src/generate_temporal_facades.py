@@ -41,7 +41,18 @@ def generate_temporal_facades(n=5, frames=4, out="outputs/temporal_facades"):
             gt["motion"] = {str(int(obj_id)): [int(dx_per_frame), 0] for obj_id in ids}
             save_json(gt, prefix + "_gt.json")
 
-    print(f"✅ Generated {n} temporal façade clips × {frames} frames each in {out}")
+    eval_dataset = os.path.abspath(os.path.join('..', 'stg-synthetic-eval', 'datasets', 'temporal_facades'))
+    os.makedirs(eval_dataset, exist_ok=True)
+    import shutil
+    for fname in os.listdir(out):
+        src = os.path.join(out, fname)
+        dst = os.path.join(eval_dataset, fname)
+        try:
+            shutil.copy2(src, dst)
+        except Exception as exc:
+            print(f'[warn] could not copy {fname} -> eval dataset: {exc}')
+    print(f'✅ Generated {n} temporal façade clips × {frames} frames each in {out}')
+    print(f'🗂️  Synced with evaluation dataset: {eval_dataset}')
 
 
 if __name__ == "__main__":
