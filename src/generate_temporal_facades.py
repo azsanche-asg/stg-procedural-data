@@ -5,7 +5,7 @@ import json
 import numpy as np
 from tqdm import tqdm
 
-from stg_procedural_data.utils.io_utils import save_depth, save_image, save_json, save_mask
+from utils.io_utils import save_depth, save_image, save_json, save_mask
 from src.generate_facades import generate_facade
 
 
