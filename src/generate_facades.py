@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from tqdm import tqdm
 
-from utils.io_utils import save_depth, save_image, save_json, save_mask
+from stg_procedural_data.utils.io_utils import save_depth, save_image, save_json, save_mask
 
 
 def generate_facade(width=256, height=256, floors=3, windows_per_floor=5):
